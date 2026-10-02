@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/src/output.css' %}">
+    <title>{% block title %}Shop{% endblock %}</title>
+    </head>
+<body>
+    <div id="nav" >
+        {% include "includes/_navbar.html" %}
+    </div>
+
+    <div id="content" class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block scripts%} {% endblock%}
+</body>
+</html>
