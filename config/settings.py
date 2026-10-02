@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # my apps
     "accounts",
     "home",
+    "catalog",
+    "orders",
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser"
