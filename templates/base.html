@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/src/output.css' %}">
     <title>{% block title %}Shop{% endblock %}</title>
+    <script>
+      // Inicializa el tema antes del primer paint para evitar FOUC.
+      // El listener del toggle vive en _navbar.html.
+      (function () {
+        var savedTheme = localStorage.getItem("theme");
+        var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var currentTheme = savedTheme || (isDarkMode ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", currentTheme);
+      })();
+    </script>
+
     </head>
 <body>
     <div id="nav" >
