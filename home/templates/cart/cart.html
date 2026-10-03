@@ -18,7 +18,7 @@
           <div class="flex-1">
             <h2 class="font-semibold">{{ line.product.title }}</h2>
             <p class="text-sm text-base-content/50">
-              {{ line.product.price }} c/u
+              ${{ line.product.price }} c/u
             </p>
           </div>
 
@@ -27,7 +27,7 @@
           </span>
 
           <span class="tabular-nums font-semibold w-24 text-right">
-            {{ line.subtotal }}
+            ${{ line.subtotal }}
           </span>
 
           <form method="post" action="{% url 'orders:cart_remove' line.product.pk %}">
@@ -40,7 +40,7 @@
 
     <div class="flex justify-between items-baseline mt-8">
       <span class="text-lg">Total</span>
-      <span class="text-3xl font-bold tabular-nums">{{ total }}</span>
+      <span class="text-3xl font-bold tabular-nums">${{ total }}</span>
     </div>
   {% else %}
     <div class="py-24 text-center">

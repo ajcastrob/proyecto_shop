@@ -22,14 +22,15 @@ def cart_detail(request):
 
     # El subtotal se calcula aquí, no en el template: Decimal * int es exacto
     # y en el template haría falta un filtro que no valida tipos.
-    lines = [
-        {
-            "product": product,
-            "quantity": cart[str(product.pk)],
-            "subtotal": product.price * cart[str(product.pk)],
-        }
-        for product in products
-    ]
+    lines = []
+    for product in products:
+        lines.append(
+            {
+                "product": product,
+                "quantity": cart[str(product.pk)],
+                "subtotal": product.price * cart[str(product.pk)],
+            }
+        )
     total = sum(line["subtotal"] for line in lines)
 
     return render(
