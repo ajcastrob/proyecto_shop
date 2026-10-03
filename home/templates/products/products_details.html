@@ -40,7 +40,7 @@
         {{ product.title }}
       </h1>
 
-      <p class="text-3xl font-light tabular-nums mt-8">{{ product.price }}</p>
+      <p class="text-3xl font-light tabular-nums mt-8">${{ product.price }}</p>
 
       <div class="w-12 h-px bg-base-content/20 my-10"></div>
 
@@ -70,7 +70,11 @@
             Sin existencias por ahora
           </p>
         {% else %}
-          <button class="btn btn-primary btn-lg btn-block">Añadir al carrito</button>
+          <form method="post" action="{% url 'orders:cart_add' product.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button class="btn btn-primary btn-lg btn-block">Añadir al carrito</button>
+          </form>
           {% if product.inventory < 100 %}
             <p class="text-center text-xs text-warning mt-4">
               Quedan {{ product.inventory }} unidades

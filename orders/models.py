@@ -15,7 +15,11 @@ class Order(models.Model):
     payment_status = models.CharField(
         max_length=1, choices=PAYMENT_CHOICES, default="P"
     )
-    customer = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
+    # null=True porque el carrito es de sesión y el proyecto no tiene
+    # pasarela de pago: se puede comprar sin cuenta.
+    customer = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT, null=True, blank=True
+    )
 
     def __str__(self):
         placed = f"{self.place_at:%d/%m/%Y}" if self.place_at else "—"

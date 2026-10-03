@@ -9,7 +9,19 @@
       </a>
     </div>
 
-    
+    <!-- Carrito -->
+    <div class="navbar-center">
+      <a href="{% url 'orders:cart_detail' %}"
+         class="btn btn-ghost btn-circle indicator">
+        <span class="indicator-item badge badge-primary badge-sm tabular-nums">
+            {{ cart_count }}
+        </span>
+        <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4M1 2v2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 7.09 16H17a2 2 0 0 0 1.84-1.22l3.02-5.29A1 1 0 0 0 21 8.62V6H5.21l-.94-2H1m16 16v-2a2 2 0 0 0-2-2H7.42a2 2 0 0 0-1.22 1.03L6 18h11"/>
+        </svg>
+      </a>
+    </div>
+
     <!-- End actions -->
     <div class="navbar-end flex gap-2">
 
