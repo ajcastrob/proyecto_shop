@@ -18,6 +18,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="products/", blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
     def __str__(self):
