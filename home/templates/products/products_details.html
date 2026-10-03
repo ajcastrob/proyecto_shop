@@ -70,17 +70,28 @@
             Sin existencias por ahora
           </p>
         {% else %}
-          <form method="post" action="{% url 'orders:cart_add' product.pk %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <button class="btn btn-primary btn-lg btn-block">Añadir al carrito</button>
-          </form>
-          {% if product.inventory < 100 %}
-            <p class="text-center text-xs text-warning mt-4">
-              Quedan {{ product.inventory }} unidades
-            </p>
-          {% endif %}
-        {% endif %}
+            {% if product.pk|stringformat:"s" in cart %}
+              <div class="flex gap-2">
+                <a href="{% url 'orders:cart_detail' %}" class="btn btn-primary btn-lg flex-1">
+                  Ir al carrito
+                </a>
+              </div>
+              <p class="text-center text-xs text-base-content/50 mt-4">
+                {{ cart|length }} producto{{ cart|length|pluralize:"s" }} en el carrito
+              </p>
+            {% else %}
+              <form method="post" action="{% url 'orders:cart_add' product.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button class="btn btn-primary btn-lg btn-block">Añadir al carrito</button>
+              </form>
+            {% endif %}
+        {% if product.inventory < 100 %}
+          <p class="text-center text-xs text-warning mt-4">
+            Quedan {{ product.inventory }} unidades
+          </p>
+         {% endif %}
+      {% endif %} 
       </div>
     </div>
   </div>
