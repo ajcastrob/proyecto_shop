@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ product.title }} - Shop{% endblock %}
+
+{% block content %}
+  <nav class="breadcrumbs text-xs text-base-content/50 mt-2">
+    <ul>
+      <li><a href="{% url 'products:list' %}" class="hover:text-base-content">Productos</a></li>
+      <li><a href="{% url 'products:list' %}?category={{ product.category.pk }}"
+             class="hover:text-base-content">{{ product.category.title }}</a></li>
+      <li class="text-base-content">{{ product.title }}</li>
+    </ul>
+  </nav>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20 mt-10">
+
+    <figure class="aspect-square bg-base-200 overflow-hidden rounded-box lg:sticky lg:top-10 self-start">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.title }}"
+             class="h-full w-full object-cover">
+      {% else %}
+        <div class="flex h-full w-full items-center justify-center">
+          <span class="text-9xl font-bold text-base-content/10">{{ product.title|first }}</span>
+        </div>
+      {% endif %}
+    </figure>
+
+    <div class="flex flex-col justify-center">
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs uppercase tracking-[0.2em] text-base-content/40">
+          {{ product.category.title }}
+        </span>
+        <span class="w-px h-3 bg-base-300"></span>
+        <span class="text-xs text-base-content/40">
+          Actualizado {{ product.last_update|date:"d M Y" }}
+        </span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tighter mt-6 leading-[1.05]">
+        {{ product.title }}
+      </h1>
+
+      <p class="text-3xl font-light tabular-nums mt-8">{{ product.price }}</p>
+
+      <div class="w-12 h-px bg-base-content/20 my-10"></div>
+
+      <p class="text-base-content/65 leading-loose">{{ product.description }}</p>
+
+      <dl class="mt-12 border-t border-base-300">
+        <div class="flex justify-between py-4 border-b border-base-300">
+          <dt class="text-xs uppercase tracking-wider text-base-content/40">Categoría</dt>
+          <dd class="text-sm">{{ product.category.title }}</dd>
+        </div>
+        <div class="flex justify-between py-4 border-b border-base-300">
+          <dt class="text-xs uppercase tracking-wider text-base-content/40">Inventario</dt>
+          <dd class="text-sm tabular-nums">{{ product.inventory }} unidades</dd>
+        </div>
+        <div class="flex justify-between py-4 border-b border-base-300">
+          <dt class="text-xs uppercase tracking-wider text-base-content/40">Referencia</dt>
+          <dd class="text-sm tabular-nums text-base-content/50">
+            #{{ product.pk|stringformat:"04d" }}
+          </dd>
+        </div>
+      </dl>
+
+      <div class="mt-10">
+        {% if product.inventory == 0 %}
+          <button class="btn btn-lg btn-block" disabled>Agotado</button>
+          <p class="text-center text-xs text-base-content/40 mt-4">
+            Sin existencias por ahora
+          </p>
+        {% else %}
+          <button class="btn btn-primary btn-lg btn-block">Añadir al carrito</button>
+          {% if product.inventory < 100 %}
+            <p class="text-center text-xs text-warning mt-4">
+              Quedan {{ product.inventory }} unidades
+            </p>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
