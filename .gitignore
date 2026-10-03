@@ -156,3 +156,6 @@ GitHub.sublime-settings
 
 # Agents
 AGENTS.md
+.grok/
+.commandcode/
+.hermes/

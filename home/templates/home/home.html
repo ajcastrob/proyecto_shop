@@ -1,7 +1,53 @@
-
 {% extends "base.html" %}
 {% block title %}Shop - Inicio{% endblock %}
 
 {% block content %}
-  <h1>Home Page</h1>
+  <section class="hero bg-base-200 rounded-box min-h-96">
+    <div class="hero-content text-center py-20">
+      <div class="max-w-3xl">
+        <p class="text-xs tracking-[0.3em] uppercase text-base-content/40">Tienda online minimalista</p>
+        <h1 class="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-tighter mt-6">Shop</h1>
+        <div class="w-16 h-px bg-base-content/20 mx-auto my-8"></div>
+        <p class="text-lg sm:text-xl text-base-content/60 max-w-xl mx-auto leading-relaxed">
+          Catálogo, carrito y gestión de pedidos. Sin pasarela de pago, sin ruido.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mt-10">
+          <a href="{% url 'products:list' %}" class="btn btn-primary btn-lg px-8">Ver productos</a>
+          <a href="#features" class="btn btn-ghost btn-lg px-8">Explorar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="mt-24">
+    <div class="flex items-baseline gap-4 border-b border-base-300 pb-5">
+      <h2 class="text-3xl font-bold tracking-tight">El proyecto</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-base-300 mt-px rounded-box overflow-hidden">
+      <div class="bg-base-100 p-8">
+        <span class="text-sm font-bold text-base-content/30 tabular-nums">01</span>
+        <h3 class="text-xl font-bold mt-6">Catálogo</h3>
+        <p class="text-base-content/60 leading-relaxed mt-2">
+          Listado de productos con imagen, precio e inventario, filtrable por categoría.
+        </p>
+      </div>
+
+      <div class="bg-base-100 p-8">
+        <span class="text-sm font-bold text-base-content/30 tabular-nums">02</span>
+        <h3 class="text-xl font-bold mt-6">Carrito y pedidos</h3>
+        <p class="text-base-content/60 leading-relaxed mt-2">
+          Añade productos al carrito y confirma el pedido. El precio se congela al confirmar.
+        </p>
+      </div>
+
+      <div class="bg-base-100 p-8">
+        <span class="text-sm font-bold text-base-content/30 tabular-nums">03</span>
+        <h3 class="text-xl font-bold mt-6">Panel de pedidos</h3>
+        <p class="text-base-content/60 leading-relaxed mt-2">
+          Gestiona pedidos y su estado de pago desde el admin de Django.
+        </p>
+      </div>
+    </div>
+  </section>
 {% endblock %}
