@@ -4,12 +4,29 @@
 {% block content %}
   <div class="flex flex-wrap items-end justify-between gap-4 pb-8 border-b border-base-300">
     <div>
-      <p class="text-xs tracking-[0.3em] uppercase text-base-content/40">Catálogo</p>
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tighter mt-3">Productos</h1>
+      <p class="text-xs tracking-[0.3em] uppercase text-base-content/40">
+        {% if category %}Categoría{% else %}Catálogo{% endif %}
+      </p>
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tighter mt-3">
+        {% if category %}{{ category.title }}{% else %}Productos{% endif %}
+      </h1>
     </div>
     <p class="text-base-content/50 tabular-nums">
-      {{ products|length }} productos en total
+      {{ products|length }} producto{{ products|length|pluralize:"s" }}
     </p>
+  </div>
+
+  <div class="flex flex-wrap gap-2 mt-6">
+    <a href="{% url 'products:list' %}"
+       class="btn btn-sm {% if not category %}btn-primary{% else %}btn-ghost{% endif %}">
+      Todo
+    </a>
+    {% for cat in categories %}
+      <a href="?category={{ cat.pk }}"
+         class="btn btn-sm {% if category and category.pk == cat.pk %}btn-primary{% else %}btn-ghost{% endif %}">
+        {{ cat.title }}
+      </a>
+    {% endfor %}
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
