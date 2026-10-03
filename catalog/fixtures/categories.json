@@ -1,0 +1,22 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": { "title": "Ropa" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": { "title": "Calzado" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": { "title": "Accesorios" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": { "title": "Electrónica" }
+  }
+]

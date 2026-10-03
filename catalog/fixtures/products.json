@@ -1,0 +1,197 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "title": "Camiseta básica",
+      "slug": "camiseta-basica",
+      "description": "Camiseta de algodón con ajuste regular.",
+      "price": "19.90",
+      "inventory": 12,
+      "category": 1,
+      "last_update": "2026-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "title": "Pantalón vaquero",
+      "slug": "pantalon-vaquero",
+      "description": "Pantalón de mezclilla con corte recto.",
+      "price": "45.00",
+      "inventory": 30,
+      "category": 1,
+      "last_update": "2026-09-03T11:30:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "title": "Sudadera con capucha",
+      "slug": "sudadera-con-capucha",
+      "description": "Sudadera de algodón cepillado para días fríos.",
+      "price": "39.99",
+      "inventory": 0,
+      "category": 1,
+      "last_update": "2026-09-05T09:15:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "title": "Chaqueta impermeable",
+      "slug": "chaqueta-impermeable",
+      "description": "Chaqueta ligera con membrana repelente al agua.",
+      "price": "129.99",
+      "inventory": 150,
+      "category": 1,
+      "last_update": "2026-09-08T16:45:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "title": "Zapatillas urbanas",
+      "slug": "zapatillas-urbanas",
+      "description": "Zapatillas de lona con suela de goma vulcanizada.",
+      "price": "7.5",
+      "inventory": 8,
+      "category": 2,
+      "last_update": "2026-09-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "title": "Botas de montaña",
+      "slug": "botas-de-montana",
+      "description": "Botas impermeables con suela Highlander.",
+      "price": "89.00",
+      "inventory": 240,
+      "category": 2,
+      "last_update": "2026-09-12T18:20:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "title": "Sandalias de verano",
+      "slug": "sandalias-de-verano",
+      "description": "Sandalias de cuero con correas ajustables.",
+      "price": "24.90",
+      "inventory": 45,
+      "category": 2,
+      "last_update": "2026-09-15T08:10:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "title": "Zapatos de cuero",
+      "slug": "zapatos-de-cuero",
+      "description": "Zapatos de cuero para ocasiones formales.",
+      "price": "79.90",
+      "inventory": 0,
+      "category": 2,
+      "last_update": "2026-09-18T14:05:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "title": "Bolso de tela",
+      "slug": "bolso-de-tela",
+      "description": "Bolso de algodón con asas largas.",
+      "price": "15.00",
+      "inventory": 200,
+      "category": 3,
+      "last_update": "2026-09-20T10:35:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "title": "Gorra bordada",
+      "slug": "gorra-bordada",
+      "description": "Gorra de algodón con bordado frontal.",
+      "price": "12.50",
+      "inventory": 5,
+      "category": 3,
+      "last_update": "2026-09-22T17:50:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+      "title": "Cinturón de piel",
+      "slug": "cinturon-de-piel",
+      "description": "Cinturón de piel con hebilla metálica.",
+      "price": "29.90",
+      "inventory": 75,
+      "category": 3,
+      "last_update": "2026-09-25T09:40:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 12,
+    "fields": {
+      "title": "Bufanda de lana",
+      "slug": "bufanda-de-lana",
+      "description": "Bufanda de lana merino tejida a mano.",
+      "price": "22.00",
+      "inventory": 0,
+      "category": 3,
+      "last_update": "2026-09-28T13:25:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 13,
+    "fields": {
+      "title": "Auriculares inalámbricos",
+      "slug": "auriculares-inalambricos",
+      "description": "Auriculares con cancelación de ruido y estuche de carga.",
+      "price": "59.99",
+      "inventory": 320,
+      "category": 4,
+      "last_update": "2026-10-01T11:10:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 14,
+    "fields": {
+      "title": "Batería externa",
+      "slug": "bateria-externa",
+      "description": "Batería portátil de 20000 mAh con doble salida USB.",
+      "price": "34.90",
+      "inventory": 18,
+      "category": 4,
+      "last_update": "2026-10-02T08:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 15,
+    "fields": {
+      "title": "Teclado inalámbrico",
+      "slug": "teclado-inalambrico",
+      "description": "Teclado compacto inalámbrico con batería recargable.",
+      "price": "49.00",
+      "inventory": 130,
+      "category": 4,
+      "last_update": "2026-10-02T15:30:00Z"
+    }
+  }
+]
