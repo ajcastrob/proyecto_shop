@@ -30,9 +30,20 @@
             ${{ line.subtotal }}
           </span>
 
+          <form method="post" action="{% url 'orders:cart_add' line.product.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-ghost btn-sm">+</button>
+          </form>
+
+         <form method="post" action="{% url 'orders:cart_substract' line.product.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-ghost btn-sm">-</button>
+          </form>
+
+
           <form method="post" action="{% url 'orders:cart_remove' line.product.pk %}">
             {% csrf_token %}
-            <button class="btn btn-ghost btn-sm">Quitar</button>
+            <button class="btn btn-ghost btn-sm">Sacar del carrito</button>
           </form>
         </div>
       {% endfor %}

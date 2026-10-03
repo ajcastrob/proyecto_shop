@@ -16,6 +16,24 @@ def cart_add(request, product_id):
     return redirect(request.POST.get("next") or "orders:cart_detail")
 
 
+@require_POST
+def cart_substract(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    cart = request.session.get(CART_SESSION_KEY, {})
+    key = str(product.pk)
+
+    if key in cart:
+        # Restar uno al contenido actual
+        cart[key] -= 1
+
+        # Si la cantidad llega a 0 o menos, eliminar el producto del carrito
+        if cart[key] <= 0:
+            del cart[key]
+        # Guardar los cambios en la sesión.
+        request.session[CART_SESSION_KEY] = cart
+    return redirect(request.POST.get("next") or "orders:cart_detail")
+
+
 def cart_detail(request):
     cart = request.session.get(CART_SESSION_KEY, {})
     products = Product.objects.filter(pk__in=cart.keys())
