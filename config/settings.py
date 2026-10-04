@@ -138,7 +138,6 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    Path(__name__).resolve().parent / "staticfiles",
 ]
 
 
