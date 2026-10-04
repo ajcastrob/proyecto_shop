@@ -21,5 +21,16 @@ class Product(models.Model):
     image = models.ImageField(upload_to="products/", blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
+    class Meta:
+        # El inventario no puede quedar negativo. La constraint vive en la
+        # base de datos: es la ultima linea de defensa, aunque alguien
+        # escriba codigo que intente restar de mas.
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(inventory__gte=0),
+                name="inventory_no_negativo",
+            )
+        ]
+
     def __str__(self):
         return self.title

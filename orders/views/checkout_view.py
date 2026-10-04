@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
-
+from django.db.models import F
 from catalog.models import Product
 from orders.models import Order, OrderItem
 from orders.views.orders_views import CART_SESSION_KEY
@@ -37,13 +37,34 @@ class OrderCheckoutView(TemplateView):
             return redirect("orders:cart_detail")
 
         with transaction.atomic():
-            order = Order.objects.create(customer=None)
+            # El descuento va dentro del filtro (inventory__gte=quantity) para que
+            # la comprobacion y el descuento sean una sola sentencia SQL. Asi dos
+            # pedidos simultaneos no pueden solderse el mismo producto.
+            for line in lines:
+                product = line["product"]
+                quantity = line["quantity"]
+
+                updated = Product.objects.filter(
+                    pk=product.pk,
+                    inventory__gte=quantity,
+                ).update(inventory=F("inventory") - quantity)
+
+                if not updated:
+                    messages.error(
+                        request,
+                        f"Ya no hay stock de '{product.title}'.",
+                    )
+                    return redirect("orders:cart_detail")
+
+            order = Order.objects.create(customer=None, total=total)
             OrderItem.objects.bulk_create(
                 [
                     OrderItem(
                         order=order,
                         product=line["product"],
                         quantity=line["quantity"],
+                        # El precio se congela aqui: si el producto cambia de
+                        # precio manana, el pedido historico no se altera.
                         unit_price=line["product"].price,
                     )
                     for line in lines

@@ -20,6 +20,11 @@ class Order(models.Model):
     customer = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, null=True, blank=True
     )
+    # Se congela al confirmar el pedido, igual que OrderItem.unit_price. Si se
+    # calculara sumando los items, un cambio de precio posterior alteraria el
+    # total de un pedido ya confirmado. max_digits=10 porque un pedido de
+    # varios productos se sale de los 9999.99 de max_digits=6.
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         placed = f"{self.place_at:%d/%m/%Y}" if self.place_at else "—"

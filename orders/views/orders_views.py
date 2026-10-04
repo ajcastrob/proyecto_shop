@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from catalog.models import Product
 
 CART_SESSION_KEY = "cart"
@@ -9,6 +10,13 @@ CART_SESSION_KEY = "cart"
 @require_POST
 def cart_add(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+
+    # El detalle bloquea el boton si inventory == 0, pero esta vista se
+    # puede llamar directamente. Se comprueba aqui tambien.
+    if product.inventory <= 0:
+        messages.error(request, f"'{product.title}' está agotado.")
+        return redirect(request.POST.get("next") or "orders:cart_detail")
+
     cart = request.session.get(CART_SESSION_KEY, {})
     key = str(product.pk)
     cart[key] = cart.get(key, 0) + 1
