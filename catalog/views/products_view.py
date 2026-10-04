@@ -11,7 +11,7 @@ class ProductListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Product.objects.all()
         # El filtro va por query param (?category=<pk>) para poder combinarlo
         # con otros filtros mas adelante sin crear una vista por combinacion.
         # Se valida que sea un entero antes de filtrar: un category=abc lanza
