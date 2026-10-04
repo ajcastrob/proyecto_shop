@@ -53,6 +53,7 @@
       <span class="text-lg">Total</span>
       <span class="text-3xl font-bold tabular-nums">${{ total }}</span>
     </div>
+    <a class="btn btn-primary btn-lg btn-block" href="{% url 'orders:checkout' %}">Confirmar pedido</a>
   {% else %}
     <div class="py-24 text-center">
       <p class="text-lg font-semibold">Tu carrito está vacío.</p>

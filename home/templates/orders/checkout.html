@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Confirmar pedido - Shop{% endblock %}
+
+{% block content %}
+  <p class="text-xs tracking-[0.3em] uppercase text-base-content/40">Checkout</p>
+  <h1 class="text-5xl font-bold tracking-tighter mt-3">Confirma tu pedido</h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 mt-10">
+
+    <div class="divide-y divide-base-300 border-y border-base-300">
+      {% for line in lines %}
+        <div class="flex items-center gap-6 py-6">
+          <figure class="size-24 shrink-0 bg-base-200 overflow-hidden rounded-box">
+              {% if line.product.image %}
+                <img src="{{ line.product.image.url }}" alt="{{ line.product.title }}"
+                    class="h-full w-full object-cover">
+              {% endif %}
+            </figure>  
+          <div class="flex-1">
+            <h2 class="font-semibold">{{ line.product.title }}</h2>
+            <p class="text-sm text-base-content/50">
+              {{ line.product.price }} × {{ line.quantity }}
+            </p>
+          </div>
+
+          <span class="tabular-nums font-semibold">{{ line.subtotal }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div>
+      <div class="card bg-base-200 card-border sticky top-10">
+        <div class="card-body">
+          <h2 class="card-title text-lg">Resumen</h2>
+
+          <div class="flex justify-between py-3 border-b border-base-300">
+            <span class="text-sm text-base-content/50">Productos</span>
+            <span class="tabular-nums">{{ lines|length }}</span>
+          </div>
+
+          <div class="flex justify-between items-baseline mt-4">
+            <span class="text-lg">Total</span>
+            <span class="text-3xl font-bold tabular-nums">{{ total }}</span>
+          </div>
+
+          <form method="post" action="{% url 'orders:checkout' %}" class="mt-6">
+            {% csrf_token %}
+            <button class="btn btn-primary btn-lg btn-block">Confirmar pedido</button>
+          </form>
+
+          <a href="{% url 'orders:cart_detail' %}" class="btn btn-ghost btn-block mt-2">
+            Volver al carrito
+          </a>
+
+          <p class="text-xs text-base-content/40 mt-4 text-center">
+            El pedido queda pendiente. A confirmar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
