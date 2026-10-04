@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 import os
+from urllib.parse import unquote, urlparse
 from dotenv import load_dotenv
 
 
@@ -97,6 +98,21 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+
+_DATABASE_URL = os.environ.get("DATABASE_URL")
+if _DATABASE_URL:
+    _url = urlparse(_DATABASE_URL)
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": unquote(_url.path.lstrip("/")),
+        "USER": unquote(_url.username or ""),
+        "PASSWORD": unquote(_url.password or ""),
+        "HOST": _url.hostname or "",
+        "PORT": str(_url.port or 5432),
+        "CONN_MAX_AGE": 600,
+        "OPTIONS": {"sslmode": "require"},
+    }
 
 
 # Password validation
